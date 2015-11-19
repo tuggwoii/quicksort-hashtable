@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>Binary Tree</title>
+        <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css/style.css" rel="stylesheet" />
+        <link href="css/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+	</head>
+	<body ng-app="app">
+		<div ng-controller="AppController" class="container">
+            <h1>Binary Tree Postfix</h1>
+			<div class="row">
+                <div class="col-md-12">
+                    <h2>Tree results</h2>
+                    <div class="result" ng-if="trees.name">
+                        <p ng-if="!result">NO RESULT, CLICK ON ANY NODE TO SEE THE RESULT.</p>
+                        <p class="result-text" ng-if="result">{{result}}</p>
+                    </div>
+                    <script type="text/ng-template" id="field_renderer.html">
+                        <span ng-if="!field.expand" class="node {{field.active?'active':''}}" ng-click="calculate(field)"><i class="fa fa-caret-right" ng-click="expand(field)" ng-if="field.left || field.right"></i> {{field.name}}</span>
+                        <span ng-if="field.expand" class="node {{field.active?'active':''}}" ng-click="calculate(field)"><i class="fa fa-caret-down" ng-click="expand(field)" ng-if="field.left || field.right"></i> {{field.name}}</span>
+                        <ul ng-if="(field.left || field.right) && field.expand">
+                            <li ng-repeat="field in [field.left, field.right] track by $index" ng-include="'field_renderer.html'"></li>
+                        </ul>
+                    </script>
+                    <div class="tree-container" ng-if="trees.name">
+                        <div>
+                            <span class="root-tree node {{trees.active?'active':''}}" ng-click="calculate(trees)"><i class="fa fa-folder-o"></i> {{trees.name}}</span>
+                        </div>
+                        <ul ng-if="trees.left.name || trees.right.name">
+                            <li ng-repeat="field in [trees.left, trees.right] track by $index" class="firstchild" ng-include="'field_renderer.html'"></li>
+                        </ul>
+                    </div>
+                    <p ng-if="!trees.name" class="text-info">- WAITING FOR SUBMIT POSTFIX EXPRESSION.</p>
+                </div>
+                <div class="col-md-12">
+                    <h2>Input postfix expression</h2>
+                    <div class="form-group">
+                        <textarea class="form-control" ng-model="postfix"></textarea>
+                    </div>
+                    <button class="btn btn-success" type="button" ng-click="process()">SUBMIT</button>
+                </div>
+			</div>
+		</div>
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/app-controller.js"></script>
+	</body>
+</html>
