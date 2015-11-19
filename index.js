@@ -4,6 +4,7 @@ var app = express();
 app.set('port', (process.env.PORT || 4998));
 
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
+app.use('/public', express.static(__dirname + '/public'));
 app.use('/css', express.static(__dirname + '/css'));
 app.use('/img', express.static(__dirname + '/img'));
 app.use('/js', express.static(__dirname + '/js'));
