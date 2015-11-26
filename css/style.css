@@ -1,47 +1,18 @@
 ﻿body {
 
 }
-.firstchild ul {
-
-}
-.root-tree {
-    font-size:35px;
-    cursor:pointer;
-}
-p {
-    margin:0;
-}
-ul, li {
-    list-style:none;
-    font-size:30px;
-}
 textarea {
-    max-width: 400px;
-    min-height:100px;
+	min-height:120px;
 }
-.result {
-    border:1px solid #ccc;
-    padding:20px;
+.btn {
+	margin-top:30px;
 }
-.tree-container {
-    margin-top:20px;
+.output {
+	padding-top:50px;
 }
-.node {
-    display:inline-block;
-    min-width:200px;
-    max-width:100%;
-    padding:0 20px;
-    cursor:pointer;
-}
-.node.active {
-    background:#ccc;
-    border-radius:5px;
-}
-span .fa {
-    color:#5cb85c;
-    font-size:40px;
-}
-.result-text {
-    color:#5cb85c;
-    font-size:30px;
+.output-area {
+	display:inline-block;
+	width:100%;
+	padding:20px;
+	border:1px solid #ccc;
 }

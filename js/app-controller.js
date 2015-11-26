@@ -1,76 +1,73 @@
 app.controller('AppController', function ($scope) {
-
-    //EXAMPLE POSTFIX
-    $scope.postfix = '251-*32*+';
-
-    function isdigit(c) {
-        if (c != '+' && c != '-' && c != '*' && c != '/') {
-            return true;
-        }
-        return false;
-    }
-
-    function top(stack) {
-        return stack[stack.length - 1];
-    }
-
-    function createTree(postfix, size) {
-        var stack = [];
-        for (i = 0; i < size; i++) {
-            var char = postfix[i];
-            if (isdigit(char)) {
-                stack.push({ name: char });
-            }
-            else {
-                var elm1 = top(stack);
-                stack.pop();
-                var elm2 = top(stack);
-                stack.pop();
-                var operation = {
-                    name: char
-                };
-                operation.left = elm1;
-                operation.right = elm2;
-                stack.push(operation);
-            }
-        }
-        return stack.pop();
-    }
-
-
-    $scope.process = function () {
-        var chars = $scope.postfix.split('');
-        var size = chars.length;
-        var result = createTree(chars, size);
-
-        $scope.trees = result;
-    }
-
-    $scope.clearActive = function (tree) {
-        tree.active = false;
-        if (tree.left) {
-            $scope.clearActive(tree.left);
-        }
-        if (tree.right) {
-            $scope.clearActive(tree.right);
-        }
-    }
-
-    $scope.calculate = function (tree) {
-        $scope.clearActive($scope.trees);
-        tree.active = true;
-        if (isdigit(tree.name)) {
-            $scope.result = tree.name;
-        }
-    }
-
-    $scope.expand = function (tree) {
-        if (tree.expand) {
-            tree.expand = false;
-        }
-        else {
-            tree.expand = true;
-        }
-    }
-
+	
+	$scope.outputs = [];
+	$scope.array = [];
+	$scope.inputs = '';
+	$scope.tabs = 0;
+	
+	function quickSort (A, low, high) {
+		if(low < high) {
+			var p = partition(A, low, high);
+			quickSort(A, low, p - 1);
+			quickSort(A, p + 1, high);
+		}
+	}
+	
+	function partition (A, low, high) {
+		var pivot = A[high];
+		var i = low;
+		for	(var j = low; j < high; j++) {
+			if(A[j] <= pivot) {
+				swap(i, j);
+				i = i + 1;
+			}
+		}
+		swap(i, high);
+		return i;
+	}
+	
+	function swap (i, j) {
+		var temp = $scope.array[i];
+		$scope.array[i] = $scope.array[j];
+		$scope.array[j] = temp;
+	}
+	
+	function randomInput (inputs) {
+		var inputs = [];
+		for(var i = 0; i < 100; i++) {
+			var randomNumber = Math.floor((Math.random() * 999) + 1);
+			inputs.push(randomNumber);
+		}
+		return inputs.join(' ');
+	}
+	
+	function parseIntInput (A) {
+		for(var i = 0; i < A.length; i++) {
+			A[i] = parseInt(A[i]);
+		}
+	}
+	
+	$scope.appStart = function () {
+		
+	};
+	
+	$scope.switchTabs = function (tabs) {
+		if($scope.tabs != tabs) {
+			$scope.tabs = tabs;
+		}
+	}
+	
+	$scope.submit = function () {
+		$scope.array = $scope.inputs.split(' ');
+		parseIntInput($scope.array);
+		quickSort($scope.array, 0, $scope.array.length - 1);
+		$scope.outputString = $scope.array.join(' ');
+	};
+	
+	$scope.random = function () {
+		$scope.inputs = randomInput();
+	}
+	
+	$scope.appStart();
+	
 });

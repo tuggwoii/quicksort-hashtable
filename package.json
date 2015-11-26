@@ -10,12 +10,12 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.4.7",
+    "angular-ui-router": "^0.2.15",
+    "body-parser": "^1.14.1",
+    "bootstrap": "^3.3.5",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
-    "angular-ui-router": "^0.2.15",
-    "bootstrap": "^3.3.5"
+    "parse": "^1.6.9"
   },
-  "devDependencies": {
-    
-  }
+  "devDependencies": {}
 }
