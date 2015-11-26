@@ -1,4 +1,4 @@
-# binarytree
+# Quick sort/ Hash table
 How to run the app <br/>
 1. Instasll node.js here https://nodejs.org/ <br/>
 2. Clone the source code to PC <br/>
