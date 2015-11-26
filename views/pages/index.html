@@ -17,7 +17,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="row output">
+			<div class="row output" ng-show="tabs==0">
 				<div class="col-md-12">
 					<h4>OUT PUT</h4>
 					<div class="output-area">
@@ -26,6 +26,19 @@
 					</div>
 				</div>
 			</div>
+            <div class="row output" ng-show="tabs==1">
+                <div class="col-md-12">
+                    <h4>OUT PUT</h4>
+                    <div class="output-area" ng-if="hashArray.length">
+                        <ul>
+                            <li ng-repeat="room in hashArray">
+                                <span>{{$index}}:</span>
+                                <span ng-repeat="item in room.storage track by $index" class="num-span">{{item}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 			<div class="row">
 				<div class="col-md-12 form-group">
 					<h4>INPUT</h4>

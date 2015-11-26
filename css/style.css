@@ -16,3 +16,9 @@ textarea {
 	padding:20px;
 	border:1px solid #ccc;
 }
+.num-span {
+    margin-left:5px;
+}
+ul, li {
+    list-style:none;
+}
